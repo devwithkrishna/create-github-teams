@@ -1,0 +1,58 @@
+name: create-update-delete-github-teams
+on:
+  workflow_dispatch:
+    inputs:
+      organization:
+        type: string
+        default: 'devwithkrishna'
+        description: 'The GitHub organization where the team will be created.'
+        required: true
+      team_name:
+        description: "The name of the github team."
+        type: string
+        required: true
+      team_description:
+        description: "Description for the new Github Team"
+        type: string
+        required: false
+      team_permission:
+        description: "Deprecated. The permission that new repositories will be added to the team with when none is specified.Can be one of: pull, push"
+        type: choice
+        options:
+          - pull
+          - push
+      team_notification_setting:
+        description: "The notification setting the team has chosen. The options are notifications_enabled, notifications_disabled"
+        type: choice
+        options:
+          - notifications_enabled
+          - notifications_disabled
+      team_privacy:
+        description: "The level of privacy this team should have. The options are: secret, closed"
+        type: choice
+        options:
+          - secret
+          - closed
+      team_owners:
+        description: "List GitHub IDs for organization members who will become team maintainers"
+        default: ${{ github.actor}}
+      repository_names:
+        description: "The full name (e.g. "organization-name/repository-name") of repositories to add the team to."
+
+run-name: ${{ github.actor }} creating ${{inputs.team_name}}
+jobs:
+  create-github-team:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+      - name: execute the program
+        env:
+          GH_TOKEN: ${{ secrets.DEVWITHKRISHNA_PERSONAL_ACCESS_TOKEN }}
+        runs: |
+          bash create_github_teams.sh ${{ inputs.organization}} ${{ github.team_name}} ${{ inputs.team_description }} ${{inputs.team_permission}} ${{inputs.team_notification_setting}} ${{ inputs.team_privacy}} ${{ inputs.team_owners}} ${{ inputs.repository_names}}
+
+
+
+
+  
