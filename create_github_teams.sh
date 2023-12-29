@@ -23,8 +23,12 @@ fi
 # Convert TEAM_OWNERS to an array
 IFS=',' read -ra TEAM_OWNERS_ARRAY <<< "$TEAM_OWNERS"
 
+# Convert REPOSITORY_NAMES to an array
+IFS=',' read -ra REPOSITORY_NAMES_ARRAY <<< "$REPOSITORY_NAMES"
+
 # Convert REPOSITORY_NAMES to a comma-separated string
-REPOSITORY_NAMES_STRING=$(IFS=, ; echo "${REPOSITORY_NAMES_ARRAY[*]}")
+REPOSITORY_NAMES_STRING=$(IFS=','; echo "${REPOSITORY_NAMES_ARRAY[*]}")
+
 
 curl -L \
   -X POST \
