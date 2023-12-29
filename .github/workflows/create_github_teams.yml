@@ -35,9 +35,9 @@ on:
           - closed
       team_owners:
         description: "List GitHub IDs for organization members who will become team maintainers"
-        default: ${{ github.actor}}
+        default: ${{ github.actor }}
       repository_names:
-        description: "The full name (e.g. "organization-name/repository-name") of repositories to add the team to."
+        description: "The full name organization-name/repository-name  of repositories to add the team to."
 
 run-name: ${{ github.actor }} creating ${{inputs.team_name}}
 jobs:
@@ -49,8 +49,8 @@ jobs:
       - name: execute the program
         env:
           GH_TOKEN: ${{ secrets.DEVWITHKRISHNA_PERSONAL_ACCESS_TOKEN }}
-        runs: |
-          bash create_github_teams.sh ${{ inputs.organization}} ${{ github.team_name}} ${{ inputs.team_description }} ${{inputs.team_permission}} ${{inputs.team_notification_setting}} ${{ inputs.team_privacy}} ${{ inputs.team_owners}} ${{ inputs.repository_names}}
+        run: |
+          bash create_github_teams.sh ${{ inputs.organization }} ${{ github.team_name }} ${{ inputs.team_description }} ${{inputs.team_permission }} ${{inputs.team_notification_setting }} ${{ inputs.team_privacy }} ${{ inputs.team_owners }} ${{ inputs.repository_names }}
 
 
 
