@@ -35,7 +35,7 @@ on:
           - closed
       team_owners:
         description: "List GitHub IDs for organization members who will become team maintainers"
-        default: ${{ github.actor }}
+        default: "githubofkrishnadhas"
       repository_names:
         description: "The full name organization-name/repository-name  of repositories to add the team to."
 
