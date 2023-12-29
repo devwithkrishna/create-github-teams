@@ -23,9 +23,8 @@ fi
 # Convert TEAM_OWNERS to an array
 IFS=',' read -ra TEAM_OWNERS_ARRAY <<< "$TEAM_OWNERS"
 
-# Convert REPOSITORY_NAMES to an array
-IFS=',' read -ra REPOSITORY_NAMES_ARRAY <<< "$REPOSITORY_NAMES"
-
+# Convert REPOSITORY_NAMES to a comma-separated string
+REPOSITORY_NAMES_STRING=$(IFS=, ; echo "${REPOSITORY_NAMES_ARRAY[*]}")
 
 curl -L \
   -X POST \
@@ -33,4 +32,4 @@ curl -L \
   -H "Authorization: Bearer $GH_TOKEN" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/orgs/$ORGANIZATION/teams \
-  -d "{\"name\":\"$TEAM_NAME\",\"description\":\"$TEAM_DESCRIPTION\",\"maintainers\":${TEAM_OWNERS_ARRAY[@]},\"repo_names\":\"${REPOSITORY_NAMES_ARRAY[@]}\",\"permission\":\"$TEAM_PERMISSION\",\"notification_setting\":\"$TEAM_NOTIFICATION_SETTING\",\"privacy\":\"$TEAM_PRIVACY\"}"
+  -d "{\"name\":\"$TEAM_NAME\",\"description\":\"$TEAM_DESCRIPTION\",\"maintainers\":${TEAM_OWNERS_ARRAY[@]},\"repo_names\":\"$REPOSITORY_NAMES_STRING\",\"permission\":\"$TEAM_PERMISSION\",\"notification_setting\":\"$TEAM_NOTIFICATION_SETTING\",\"privacy\":\"$TEAM_PRIVACY\"}"
