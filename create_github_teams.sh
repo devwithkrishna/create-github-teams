@@ -38,4 +38,4 @@ curl -L \
   -H "Authorization: Bearer $GH_TOKEN" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/orgs/$ORGANIZATION/teams \
-  -d "{\"name\":\"$TEAM_NAME\",\"description\":\"$TEAM_DESCRIPTION\",\"maintainers\":${TEAM_OWNERS_ARRAY[@]},\"repo_names\":\"$REPOSITORY_NAMES_ARRAY[@]\",\"permission\":\"$TEAM_PERMISSION\",\"notification_setting\":\"$TEAM_NOTIFICATION_SETTING\",\"privacy\":\"$TEAM_PRIVACY\"}"
+  -d "{\"name\":\"$TEAM_NAME\",\"description\":\"$TEAM_DESCRIPTION\",\"maintainers\":${TEAM_OWNERS_ARRAY[@]},\"repo_names\":${REPOSITORY_NAMES_ARRAY[@]},\"permission\":\"$TEAM_PERMISSION\",\"notification_setting\":\"$TEAM_NOTIFICATION_SETTING\",\"privacy\":\"$TEAM_PRIVACY\"}"
