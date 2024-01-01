@@ -50,7 +50,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.DEVWITHKRISHNA_PERSONAL_ACCESS_TOKEN }}
         run: |
-          bash create_github_teams.sh ${{ inputs.organization }} ${{ github.team_name }} "${{ inputs.team_description }}" ${{inputs.team_permission }} ${{inputs.team_notification_setting }} ${{ inputs.team_privacy }} ${{ inputs.team_owners }} ${{ inputs.repository_names }}
+          bash create_github_teams.sh ${{ inputs.organization }} ${{ inputs.team_name }} "${{ inputs.team_description }}" ${{inputs.team_permission }} ${{inputs.team_notification_setting }} ${{ inputs.team_privacy }} ${{ inputs.team_owners }} ${{ inputs.repository_names }}
 
 
 
