@@ -22,13 +22,20 @@ fi
 # Convert TEAM_OWNERS to an array
 IFS=',' read -ra TEAM_OWNERS_ARRAY <<< "$TEAM_OWNERS"
 
-# Construct JSON data
+# Construct maintainers array
+MAINTAINERS_ARRAY="["
+for owner in "${TEAM_OWNERS_ARRAY[@]}"; do
+    MAINTAINERS_ARRAY+="\"$owner\","
+done
+MAINTAINERS_ARRAY="${MAINTAINERS_ARRAY%,}" # Remove trailing comma
+MAINTAINERS_ARRAY+="]"
 
+# Construct JSON data
 JSON_DATA=$(cat <<EOF
 {
   "name": "$TEAM_NAME",
   "description": "$TEAM_DESCRIPTION",
-  "maintainers": $(printf '"%s",' "${TEAM_OWNERS_ARRAY[@]}" | sed 's/,$//'),
+  "maintainers": $MAINTAINERS_ARRAY,
   "permission": "$TEAM_PERMISSION",
   "notification_setting": "$TEAM_NOTIFICATION_SETTING",
   "privacy": "$TEAM_PRIVACY"
