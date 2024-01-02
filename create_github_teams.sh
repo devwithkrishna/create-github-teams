@@ -28,7 +28,7 @@ JSON_DATA=$(cat <<EOF
 {
   "name": "$TEAM_NAME",
   "description": "$TEAM_DESCRIPTION",
-  "maintainers": ${TEAM_OWNERS_ARRAY[@]},
+  "maintainers": $(printf '"%s",' "${TEAM_OWNERS_ARRAY[@]}" | sed 's/,$//'),
   "permission": "$TEAM_PERMISSION",
   "notification_setting": "$TEAM_NOTIFICATION_SETTING",
   "privacy": "$TEAM_PRIVACY"
