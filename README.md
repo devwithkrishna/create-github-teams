@@ -10,8 +10,8 @@
 For more information, see [Setting team creation permissions](https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#create-a-team)
 
 ### How code works
-requires owner name / organization name
-requires teams name
+* requires owner name / organization name
+* requires teams name
 
 |Arguments | type|description|
 |----------|-----|-----------|
@@ -22,6 +22,8 @@ requires teams name
 | privacy | string | Can be one of: secret, closed |
 | notification_setting | string | Default: notifications_enabled Can be one of: notifications_enabled, notifications_disabled |
 | permission | string | Default: pull , Can be one of: pull, push |
+
+The script create_github_teams.sh will accept the above parameters from github workflow and use Github rest api to create teams.
 
 
 
