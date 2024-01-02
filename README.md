@@ -49,9 +49,7 @@ If you are an organization owner, deleting a parent team will delete all of its 
 | organization | string| The organization name. The name is not case sensitive.|
 | team_slug  | string |The slug of team name.|
 
-* * team slug name is retrieved using list teams api 
-
-[list-github-teams](https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#list-teams)
+* team slug name is retrieved using list teams api  [list-github-teams](https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#list-teams)
 
  * The script delete_github_teams.sh will accept the above parameters from github workflow and use Github rest api to delete teams.
  * Work flow file used is delete_github_teams.yml
