@@ -36,7 +36,7 @@ To delete a team, the authenticated user must be an organization owner or team m
 
 If you are an organization owner, deleting a parent team will delete all of its child teams as well.
 ```
-[delete-a-github-team](https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#delete-a-team)
+For more information, [delete-a-github-team](https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#delete-a-team)
 
 ### How code works
 * requires owner name / organization name
@@ -74,9 +74,9 @@ For more information, [add-or-update-team-repository-permissions](https://docs.g
 | team_slug  | string |The slug of team name.|
 | owner | string | The account owner of the repository. The name is not case sensitive.|
 | repo_names | strings | The name of the repository without the .git extension. The name is not case sensitive.|
-| permission | choice | permissions to be set: pull, triage, push, maintain, admin |
+| permission | choice | permissions to be set: pull, triage, push, maintain, admin. default:push |
 
-:pushpin: reponames --> multiple inputs can be provided as comma seperated values Eg: a,b,c
+:pushpin: repo_names --> multiple inputs can be provided as comma seperated values Eg: a,b,c
 
 * team slug name is retrieved using list teams api  [list-github-teams](https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#list-teams)
 
@@ -92,4 +92,35 @@ For more information, [add-or-update-team-repository-permissions](https://docs.g
  * The script provide_repo_access_for_teams.sh will accept the above parameters from github workflow and use Github rest api to add provided repositories to github teams and permissions.
  
  * Work flow file used is provide_repo_access_for_teams.yml
+```
+
+## Remove a repository from github teams
+
+```
+If the authenticated user is an organization owner or a team maintainer, they can remove any repositories from the team. To remove a repository from a team as an organization member, the authenticated user must have admin access to the repository and must be able to see the team. This does not delete the repository, it just removes it from the team.
+```
+For more information, [remove-a-repository-from-a-team--parameters](https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#remove-a-repository-from-a-team--parameters)
+
+### How code works
+* requires owner name / organization name
+* requires team slug (this is retrieved using list teams and jq function matching team name)
+
+
+* The credential used is ```FINE GRAINED PERSONAL ACCESS TOKEN```
+
+|Arguments | type|description|
+|----------|-----|-----------|
+| organization | string| The organization name. The name is not case sensitive.|
+| team_slug  | string |The slug of team name.|
+| owner | string | The account owner of the repository. The name is not case sensitive.|
+| repo_names | strings | The name of the repository without the .git extension. The name is not case sensitive.|
+
+:pushpin: repo_names --> multiple inputs can be provided as comma seperated values Eg: a,b,c
+
+* team slug name is retrieved using list teams api  [list-github-teams](https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#list-teams)
+
+```
+ * The script remove_repo_access_from_teams.sh will accept the above parameters from github workflow and use Github rest api to remove  repositories from github teams and permissions.
+ 
+ * Work flow file used is remove_repo_access_from_teams.yml
 ```
