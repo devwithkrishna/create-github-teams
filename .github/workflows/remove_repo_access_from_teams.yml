@@ -27,6 +27,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.DEVWITHKRISHNA_PERSONAL_ACCESS_TOKEN }}
         run: |
-          bash provide_repo_access_for_teams.sh "${{ inputs.organization }}" "${{ inputs.team_name }}" "${{ inputs.repo_names }}"
+          bash remove_repo_access_from_teams.sh "${{ inputs.organization }}" "${{ inputs.team_name }}" "${{ inputs.repo_names }}"
 
   
