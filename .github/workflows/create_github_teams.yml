@@ -36,8 +36,6 @@ on:
       team_owners:
         description: "List GitHub IDs for organization members who will become team maintainers"
         default: "githubofkrishnadhas"
-      repository_names:
-        description: "The full name organization-name/repository-name  of repositories to add the team to."
 
 run-name: ${{ github.actor }} creating ${{inputs.team_name}}
 jobs:
@@ -50,7 +48,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.DEVWITHKRISHNA_PERSONAL_ACCESS_TOKEN }}
         run: |
-          bash create_github_teams.sh "${{ inputs.organization }}" "${{ inputs.team_name }}" "${{ inputs.team_description }}" "${{inputs.team_permission }}" "${{inputs.team_notification_setting }}" "${{ inputs.team_privacy }}" "${{ inputs.team_owners }}" "${{ inputs.repository_names }}"
+          bash create_github_teams.sh "${{ inputs.organization }}" "${{ inputs.team_name }}" "${{ inputs.team_description }}" "${{inputs.team_permission }}" "${{inputs.team_notification_setting }}" "${{ inputs.team_privacy }}" "${{ inputs.team_owners }}"
 
 
 

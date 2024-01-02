@@ -7,7 +7,6 @@ TEAM_PERMISSION=$4
 TEAM_NOTIFICATION_SETTING=$5
 TEAM_PRIVACY=$6
 TEAM_OWNERS=$7
-REPOSITORY_NAMES=$8
 
 # Check if the variable is empty or not provided
 if [ -z "$ORGANIZATION" ]; then
@@ -23,19 +22,20 @@ fi
 # Convert TEAM_OWNERS to an array
 IFS=',' read -ra TEAM_OWNERS_ARRAY <<< "$TEAM_OWNERS"
 
-# Convert REPOSITORY_NAMES to an array
-IFS=',' read -ra REPOSITORY_NAMES_ARRAY <<< "$REPOSITORY_NAMES"
-
-REPOSITORY_NAMES_STRING=$(IFS=, ; echo "${REPOSITORY_NAMES_ARRAY[*]}")
+# Construct maintainers array
+MAINTAINERS_ARRAY="["
+for owner in "${TEAM_OWNERS_ARRAY[@]}"; do
+    MAINTAINERS_ARRAY+="\"$owner\","
+done
+MAINTAINERS_ARRAY="${MAINTAINERS_ARRAY%,}" # Remove trailing comma
+MAINTAINERS_ARRAY+="]"
 
 # Construct JSON data
-
 JSON_DATA=$(cat <<EOF
 {
   "name": "$TEAM_NAME",
   "description": "$TEAM_DESCRIPTION",
-  "maintainers": ${TEAM_OWNERS_ARRAY[@]},
-  "repo_names": "$REPOSITORY_NAMES_STRING",
+  "maintainers": $MAINTAINERS_ARRAY,
   "permission": "$TEAM_PERMISSION",
   "notification_setting": "$TEAM_NOTIFICATION_SETTING",
   "privacy": "$TEAM_PRIVACY"
