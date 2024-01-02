@@ -21,7 +21,7 @@ For more information, see [Setting team creation permissions](https://docs.githu
 | team_name  | string |The name of the team.|
 | team_description| string | The description of the team.|
 | maintainers | array of strings | List GitHub IDs for organization members who will become team maintainers.|
-| privacy | string | Can be one of: secret, closed |
+| privacy | string | The level of privacy this team should have. Can be one of: secret, closed |
 | notification_setting | string | Default: notifications_enabled Can be one of: notifications_enabled, notifications_disabled |
 | permission | string | Default: pull , Can be one of: pull, push |
 
