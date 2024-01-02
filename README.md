@@ -53,3 +53,42 @@ If you are an organization owner, deleting a parent team will delete all of its 
 
  * The script delete_github_teams.sh will accept the above parameters from github workflow and use Github rest api to delete teams.
  * Work flow file used is delete_github_teams.yml
+
+ ## Provide a team access to specific repositories
+
+ ```
+ To add a repository to a team or update the team's permission on a repository, the authenticated user must have admin access to the repository, and must be able to see the team. The repository must be owned by the organization, or a direct fork of a repository owned by the organization. You will get a 422 Unprocessable Entity status if you attempt to add a repository to a team that is not owned by the organization.
+ ```
+
+For more information, [add-or-update-team-repository-permissions](https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#add-or-update-team-repository-permissions)
+
+### How code works
+* requires owner name / organization name
+* requires team slug (this is retrieved using list teams and jq function matching team name)
+
+* The credential used is ```FINE GRAINED PERSONAL ACCESS TOKEN```
+
+|Arguments | type|description|
+|----------|-----|-----------|
+| organization | string| The organization name. The name is not case sensitive.|
+| team_slug  | string |The slug of team name.|
+| owner | string | The account owner of the repository. The name is not case sensitive.|
+| repo_names | strings | The name of the repository without the .git extension. The name is not case sensitive.|
+| permission | choice | permissions to be set: pull, triage, push, maintain, admin |
+
+
+* team slug name is retrieved using list teams api  [list-github-teams](https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#list-teams)
+
+* Permissions
+  -----------
+  * pull / read : Can read and clone this repository. Can also open and comment on issues and pull requests.
+  * push / write : Can read, clone, and push to this repository. Can also manage issues and pull requests.
+  * admin : Can read, clone, and push to this repository. Can also manage issues, pull requests, and repository settings, including adding collaborators.
+  * triage : Can read and clone this repository. Can also manage issues and pull requests.
+  * mantain : Can read, clone, and push to this repository. They can also manage issues, pull requests, and some repository settings. 
+
+```
+ * The script provide_repo_access_for_teams.sh will accept the above parameters from github workflow and use Github rest api to add provided repositories to github teams and permissions.
+ 
+ * Work flow file used is provide_repo_access_for_teams.yml
+```

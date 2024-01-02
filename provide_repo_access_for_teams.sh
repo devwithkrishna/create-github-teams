@@ -47,3 +47,5 @@ for repo_name in "${repo_array[@]}"; do
       #   -d "{\"permission\":\"$PERMISSION\"}" \
       #   > response.txt 2>&1)
 done
+
+
