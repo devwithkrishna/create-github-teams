@@ -1,0 +1,32 @@
+name: delete-github-teams
+on:
+  workflow_dispatch:
+    inputs:
+      organization:
+        type: string
+        default: 'devwithkrishna'
+        description: 'The GitHub organization where the team will be deleted from.'
+        required: true
+      team_name:
+        description: "The name of the github team."
+        type: string
+        required: true
+      
+
+run-name: ${{ github.actor }} deleting ${{inputs.team_name}}
+jobs:
+  delete-github-teams:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+      - name: execute the program
+        env:
+          GH_TOKEN: ${{ secrets.DEVWITHKRISHNA_PERSONAL_ACCESS_TOKEN }}
+        run: |
+          bash delete_github_teams.sh "${{ inputs.organization }}" "${{ inputs.team_name }}"
+
+
+
+
+  
