@@ -36,6 +36,8 @@ for repo_name in "${repo_array[@]}"; do
         -H "X-GitHub-Api-Version: 2022-11-28" \
         "https://api.github.com/orgs/$ORGANIZATION/teams/$TEAM_SLUG/repos/$ORGANIZATION/$repo_name" \
         -d "{\"permission\":\"$PERMISSION\"}")
+      echo "Added repository: $repo_name to $TEAM_NAME"
+
 
       # Used for debugging bash script
       # response=$(curl -i -L \
@@ -48,4 +50,5 @@ for repo_name in "${repo_array[@]}"; do
       #   > response.txt 2>&1)
 done
 
+echo "Execution completed."
 

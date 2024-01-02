@@ -51,3 +51,4 @@ curl -L \
   https://api.github.com/orgs/$ORGANIZATION/teams \
   -d "$JSON_DATA"
 
+echo "Created github team: $TEAM_NAME"
