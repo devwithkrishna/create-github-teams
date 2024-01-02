@@ -76,6 +76,7 @@ For more information, [add-or-update-team-repository-permissions](https://docs.g
 | repo_names | strings | The name of the repository without the .git extension. The name is not case sensitive.|
 | permission | choice | permissions to be set: pull, triage, push, maintain, admin |
 
+:pushpin: reponames --> multiple inputs can be provided as comma seperated values Eg: a,b,c
 
 * team slug name is retrieved using list teams api  [list-github-teams](https://docs.github.com/en/rest/teams/teams?apiVersion=2022-11-28#list-teams)
 
