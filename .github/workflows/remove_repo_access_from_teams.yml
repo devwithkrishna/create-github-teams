@@ -16,7 +16,7 @@ on:
         required: true
       
 
-run-name: ${{ github.actor }} - removing access froms -${{ inputs.team_name }} - ${{inputs.team_name}}
+run-name: ${{ github.actor }} - removing access from -${{ inputs.team_name }} - ${{inputs.repo_names}}
 jobs:
   remove-repo-access-from-teams:
     runs-on: ubuntu-latest
