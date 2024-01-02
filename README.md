@@ -13,6 +13,8 @@ For more information, see [Setting team creation permissions](https://docs.githu
 * requires owner name / organization name
 * requires teams name
 
+* The credential used is ```FINE GRAINED PERSONAL ACCESS TOKEN```
+
 |Arguments | type|description|
 |----------|-----|-----------|
 | organization | string| The organization name. The name is not case sensitive.|
